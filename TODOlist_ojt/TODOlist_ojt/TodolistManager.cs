@@ -7,18 +7,18 @@ namespace TODOlist_ojt
     /// <summary>
     /// TODOリストに対する操作を行うクラス
     /// </summary>
-    public class TodolistManager
+    public class TodoListManager
     {
         CsvManager CM = new CsvManager();
-        public List<string> todoList = new List<string>();
+        public List<string> TodoList = new List<string>();
 
         /// <summary>
         /// CSVデータの内容をリストに取得する
         /// </summary>
-        public void LoadCsvFiletoTodoList()
+        public void LoadCsvFileToTodoList()
         {
-            todoList = CM.WriteCsvFileLoadedIntoCreatedTemporaryList();
-            todoList.RemoveAll(s => s == "");
+            TodoList = CM.WriteCsvFileLoadedIntoCreatedTemporaryList();
+            TodoList.RemoveAll(s => s == "");
         }
         /// <summary>
         /// TODOリストの内容の空かどうか判定
@@ -32,10 +32,10 @@ namespace TODOlist_ojt
         /// </summary>
         public string AddTodoContentToTodoListProcess(string addTodoContents)
         {
-            LoadCsvFiletoTodoList();
-            todoList.RemoveAll(s => s == "");
-            todoList.Add(addTodoContents); 
-            return CM.WriteProcessingToCsvFile(todoList);
+            LoadCsvFileToTodoList();
+            TodoList.RemoveAll(s => s == "");
+            TodoList.Add(addTodoContents); 
+            return CM.WriteProcessingToCsvFile(TodoList);
         }
 
         /// <summary>
@@ -43,30 +43,30 @@ namespace TODOlist_ojt
         /// </summary>
         public string AcquisitionFirstTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
-            return todoList[0];
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
+            return TodoList[0];
         }
         /// <summary>
         /// 最後のTODOを取得する
         /// </summary>
         public string AcquisitionLastTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
-            return todoList[todoList.Count - 1];
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
+            return TodoList[TodoList.Count - 1];
         }
         /// <summary>
         /// TODOリストの内容を出力する
         /// </summary>
         public void OutputTodoListContent()
         {
-            LoadCsvFiletoTodoList();
+            LoadCsvFileToTodoList();
             var todoNumber = 1;
             Console.WriteLine("---------TODO一覧---------");
-            foreach (string outputLine in todoList)
+            foreach (string outputLine in TodoList)
             {
                 Console.WriteLine("{0}.{1}", todoNumber, outputLine);
                 todoNumber++;
@@ -79,9 +79,9 @@ namespace TODOlist_ojt
         /// </summary>
         public string OutputAllTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
             OutputTodoListContent();
             return ReturnMessageIsOutputAllTodo();
         }
@@ -91,13 +91,13 @@ namespace TODOlist_ojt
         /// </summary>
         public string RemoveFirstTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
             var firstContent = 0;
-            todoList.RemoveAt(firstContent);
-            todoList.RemoveAll(s => s == "");
-            CM.WriteProcessingToCsvFile(todoList);
+            TodoList.RemoveAt(firstContent);
+            TodoList.RemoveAll(s => s == "");
+            CM.WriteProcessingToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -105,13 +105,13 @@ namespace TODOlist_ojt
         /// </summary>
         public string RemoveLastTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
-            var lastContent = todoList.Count - 1;
-            todoList.RemoveAt(lastContent);
-            todoList.RemoveAll(s => s == "");
-            CM.WriteProcessingToCsvFile(todoList);
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
+            var lastContent = TodoList.Count - 1;
+            TodoList.RemoveAt(lastContent);
+            TodoList.RemoveAll(s => s == "");
+            CM.WriteProcessingToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -119,11 +119,11 @@ namespace TODOlist_ojt
         /// </summary>
         public string RemoveAllTodo()
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
-            todoList.Clear();
-            CM.WriteProcessingToCsvFile(todoList);
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
+            TodoList.Clear();
+            CM.WriteProcessingToCsvFile(TodoList);
             return ReturnMessageIsRemoveAllTodo();
         }
         /// <summary>
@@ -131,9 +131,9 @@ namespace TODOlist_ojt
         /// </summary>
         public string SwapTodo(int replacingPosition, int taegetPosition)
         {
-            LoadCsvFiletoTodoList();
-            if (IsTodoListContentEmpty(todoList))
-                return ReturnMessageIsListempty();
+            LoadCsvFileToTodoList();
+            if (IsTodoListContentEmpty(TodoList))
+                return ReturnMessageIsListEmpty();
 
             if (IsCheckListElementsCountTwoLessThan())
                 return ReturnMessageIsTodolistElementsCountIsOne();
@@ -146,7 +146,7 @@ namespace TODOlist_ojt
                 return ReturnMessageIsEqualValueSpecified();
 
             SwapSelectedTwoTodoOrder(replacingPosition, taegetPosition);
-                CM.WriteProcessingToCsvFile(todoList);
+                CM.WriteProcessingToCsvFile(TodoList);
                 return ReturnMessageIsSwapTodo();
         }
         /// <summary>
@@ -154,14 +154,14 @@ namespace TODOlist_ojt
         /// </summary>
         public bool IsCheckListElementsCountTwoLessThan()
         {
-            return todoList.Count < 2 ? true : false;
+            return TodoList.Count < 2 ? true : false;
         }
         /// <summary>
         /// 選択された要素番号がTODOリストの要素数を超えていないかチェックを行う
         /// </summary>
         public bool IsCheckReplacePosition(int checkPosition)
         {
-            return checkPosition <= 0 || todoList.Count < checkPosition ? true : false;
+            return checkPosition <= 0 || TodoList.Count < checkPosition ? true : false;
         }
         /// <summary>
         /// 選択された要素番号が同一の値かチェックする
@@ -177,22 +177,22 @@ namespace TODOlist_ojt
         {
             var replacingPosition = replacing - 1;
             var taegetPosition = taeget - 1;
-            var temporaryTodoList = new List<string>(todoList);
-            todoList.Clear();
+            var temporaryTodoList = new List<string>(TodoList);
+            TodoList.Clear();
             for(int i=0; i < temporaryTodoList.Count; i++)
             {
                 if (i == replacingPosition)
-                    todoList.Add(temporaryTodoList[taegetPosition]);
+                    TodoList.Add(temporaryTodoList[taegetPosition]);
                 if (i == taegetPosition)
-                    todoList.Add(temporaryTodoList[replacingPosition]);
+                    TodoList.Add(temporaryTodoList[replacingPosition]);
                 if(i != taegetPosition && i != replacingPosition)
-                    todoList.Add(temporaryTodoList[i]);
+                    TodoList.Add(temporaryTodoList[i]);
             }
         }
         /// <summary>
         /// リストが空の場合に返すメッセージ
         /// </summary>
-        public string ReturnMessageIsListempty()
+        public string ReturnMessageIsListEmpty()
         {
             return "[！] リストにTODOデータが存在しません。";
         }

@@ -27,7 +27,9 @@ namespace TODOlist_ojt
                     Console.WriteLine(showString);
             }
         }
-        //文字列が同一かチェックする
+        /// <summary>
+        /// 文字列が同一かチェックする
+        /// </summary>
         public bool IsSameString(string receivedString)
         {
             var expectedString = ReturnMessageIsProgramEnd();
@@ -73,14 +75,14 @@ namespace TODOlist_ojt
                     var todoLine = InputAddTodo();
                     return OM.WhenNumber1InputProcess(todoLine);
                 case 8:
-                    OM.whenNumber8OutoutProcess();
+                    OM.whenNumber8outoutProcess();
                     var replacingTodoNumber = InputReplacingTodoNumber();
                     if (replacingTodoNumber == 11)
                         return ReturnNull();
-                    var replacementtargetTodoNumber = InputReplacementTargetTodoNumber();
-                    if (replacementtargetTodoNumber == 11)
+                    var replacementTargetTodoNumber = InputReplacementTargetTodoNumber();
+                    if (replacementTargetTodoNumber == 11)
                         return ReturnNull();
-                    return OM.WhenNumber8InputProcess(replacingTodoNumber, replacementtargetTodoNumber);
+                    return OM.WhenNumber8InputProcess(replacingTodoNumber, replacementTargetTodoNumber);
                 case 9:
                     return ReturnMessageIsNumberOutsideRange();
                 case 10:
@@ -104,7 +106,7 @@ namespace TODOlist_ojt
         public int InputReplacingTodoNumber()
         {
             Console.Write("入れ替えたいTODO番号を入力：");
-            var todoNumber = InputSwapNUmberExceptionCheck();
+            var todoNumber = InputSwapNumberExceptionCheck();
             return todoNumber;
         }
         /// <summary>
@@ -113,14 +115,14 @@ namespace TODOlist_ojt
         public int InputReplacementTargetTodoNumber()
         {
             Console.Write("入れ替え先のTODO番号を入力：");
-            var todoNumber = InputSwapNUmberExceptionCheck();
+            var todoNumber = InputSwapNumberExceptionCheck();
             return todoNumber;
         }
         /// <summary>
         /// 入力されたTODO入れ替えの番号のチェックを行う
         /// 例外が発生した場合は代わりに11を返す
         /// </summary>
-        public int InputSwapNUmberExceptionCheck()
+        public int InputSwapNumberExceptionCheck()
         {
             try
             {
@@ -138,7 +140,7 @@ namespace TODOlist_ojt
         /// </summary>
         public string ReturnMessageIsNumberOutsideRange()
         {
-            return "[!] 正しい機能番号を入力してください。";
+            return "[!] 正しい操作番号を入力してください。";
         }
         /// <summary>
         /// nullを返す

@@ -11,7 +11,7 @@ namespace TODOlist_ojt
     /// </summary>
     public class OperationManager
     {
-        TodolistManager TM = new TodolistManager();
+        TodoListManager TM = new TodoListManager();
         
         /// <summary>
         /// 入力した数値に応じた処理を呼び出す(２～７の場合)
@@ -46,7 +46,7 @@ namespace TODOlist_ojt
         /// <summary>
         /// 受け取った数値が８の場合、TODOの一覧を表示する
         /// </summary>
-        public void whenNumber8OutoutProcess()
+        public void whenNumber8outoutProcess()
         {
             TM.OutputTodoListContent();
         }
