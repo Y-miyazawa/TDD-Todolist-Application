@@ -75,7 +75,7 @@ namespace TODOlist_ojt
                     var todoLine = InputAddTodo();
                     return OM.WhenNumber1InputProcess(todoLine);
                 case 8:
-                    OM.whenNumber8outoutProcess();
+                    OM.whenNumber8OutputProcess();
                     var replacingTodoNumber = InputReplacingTodoNumber();
                     if (replacingTodoNumber == 11)
                         return ReturnNull();

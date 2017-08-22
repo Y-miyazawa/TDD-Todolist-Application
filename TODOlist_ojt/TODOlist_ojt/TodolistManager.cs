@@ -30,11 +30,11 @@ namespace TODOlist_ojt
         /// <summary>
         /// リストにTODOを追加する
         /// </summary>
-        public string AddTodoContentToTodoListProcess(string addTodoContents)
+        public string AddTodoContentToTodoListProcess(string addTodoContent)
         {
             LoadCsvFileToTodoList();
             TodoList.RemoveAll(s => s == "");
-            TodoList.Add(addTodoContents); 
+            TodoList.Add(addTodoContent); 
             return CM.WriteProcessingToCsvFile(TodoList);
         }
 
@@ -136,7 +136,7 @@ namespace TODOlist_ojt
                 return ReturnMessageIsListEmpty();
 
             if (IsCheckListElementsCountTwoLessThan())
-                return ReturnMessageIsTodolistElementsCountIsOne();
+                return ReturnMessageIsTodoListElementsCountIsOne();
 
             if (IsCheckReplacePosition(replacingPosition) || 
                 IsCheckReplacePosition(taegetPosition))
@@ -243,7 +243,7 @@ namespace TODOlist_ojt
         /// <summary>
         /// TODOの要素数が一個だった場合に返すメッセージ
         /// </summary>
-        public string ReturnMessageIsTodolistElementsCountIsOne()
+        public string ReturnMessageIsTodoListElementsCountIsOne()
         {
             return "[！] TODOが一件しかありません。";
         }

@@ -25,7 +25,7 @@ namespace TODOlist_ojt
                 case 3:
                     return RequestOutputLastTodo();
                 case 4:
-                    return RequestShowAllTodo();
+                    return RequestOutputAllTodo();
                 case 5:
                     return RequestRemoveFirstTodo();
                 case 6:
@@ -46,7 +46,7 @@ namespace TODOlist_ojt
         /// <summary>
         /// 受け取った数値が８の場合、TODOの一覧を表示する
         /// </summary>
-        public void whenNumber8outoutProcess()
+        public void whenNumber8OutputProcess()
         {
             TM.OutputTodoListContent();
         }
@@ -81,7 +81,7 @@ namespace TODOlist_ojt
         /// <summary>
         /// 全てのTODOの取得処理を呼び出す
         /// </summary>
-        public string RequestShowAllTodo()
+        public string RequestOutputAllTodo()
         {
             return TM.OutputAllTodo();
         }
