@@ -3,151 +3,123 @@
 
 namespace TODOlist_ojt
 {
-    /// <summary>
-    /// /コンソールから入力を受け付けるクラス
-    /// </summary>
+
     public class OperationSelect
     {
-        OperationManager OM = new OperationManager();
+        OperationManager operationManager = new OperationManager();
+        
         /// <summary>
-        /// 機能の操作番号を入力する
+        /// 返ってきた文字列を出力する
         /// </summary>
-        public void inputOperationNumber()
+        public void ShowReturnMessage(string showString)
         {
-             var showString = "";
-            while (IsSameString(showString))
-            {
-                ShowFunctionList();
-                Console.Write("操作番号を入力：");
-                var inputNumber = InputElementsExceptionCheck();
-                if(inputNumber != 10)
-                    inputNumber = CheckNumberAvailableRange(inputNumber);
-                showString = IdentifyInputNumberFixDoProcess(inputNumber);
-                if (showString != null)
-                    Console.WriteLine(showString);
-            }
-        }
-        /// <summary>
-        /// 文字列が同一かチェックする
-        /// </summary>
-        public bool IsSameString(string receivedString)
-        {
-            var expectedString = ReturnMessageIsProgramEnd();
-            return receivedString != expectedString ? true : false;
+            if (showString != null)
+                Console.WriteLine(showString);
         }
 
-        //※入力の例外処理のテスト方法?
         /// <summary>
-        /// 入力された要素のチェックを行う
-        /// 例外が発生した場合は代わりに10を返す
+        /// 受け取った数値が使用可能かチェックする
         /// </summary>
-        public int InputElementsExceptionCheck()
+        public int CheckUsableNumber(int inputNumber)
         {
-            try
-            {
-                var inputNumber = int.Parse(Console.ReadLine());
-                return inputNumber;
-            }
-            catch (FormatException error)
-            {
-                Console.WriteLine("[!] " + error.Message);
-                return 10;
-            }
+            if (inputNumber != 101)
+                inputNumber = CheckNumberAvailableRange(inputNumber);
+            return inputNumber;
         }
-       /// <summary>
-       /// 入力された数値が存在する機能番号と一致するかのチェックを行う
-       /// 範囲外なら9を返す
-       /// </summary>
+        /// <summary>
+        /// 入力された数値が存在する機能番号と一致するかのチェックを行う
+        /// 範囲外なら9を返す
+        /// </summary>
         public int CheckNumberAvailableRange(int inputNumber)
         {
             return 0 <= inputNumber && inputNumber <= 8 ? inputNumber : 9;
         }
         /// <summary>
+        /// 受け取ったメッセージが終了時のメッセージの場合はTrueを返す
+        /// </summary>
+        public bool IsCheckEndString(string receivedString)
+        {
+            var expectedString = ReturnMessageIsProgramEnd();
+            return receivedString == expectedString ? true : false;
+        }
+        /// <summary>
         /// 入力された数値を識別してそれに対応する処理を呼び出す
         /// </summary>
-        public string IdentifyInputNumberFixDoProcess(int operationNumber)
+        public string InvokeInputedNumberFixProcess(int operationNumber)
         {
-            switch (operationNumber)
-            {
-                case 0:
-                    return ReturnMessageIsProgramEnd();
-                case 1:
-                    var todoLine = InputAddTodo();
-                    return OM.WhenNumber1InputProcess(todoLine);
-                case 8:
-                    OM.whenNumber8OutputProcess();
-                    var replacingTodoNumber = InputReplacingTodoNumber();
-                    if (replacingTodoNumber == 11)
-                        return ReturnNull();
-                    var replacementTargetTodoNumber = InputReplacementTargetTodoNumber();
-                    if (replacementTargetTodoNumber == 11)
-                        return ReturnNull();
-                    return OM.WhenNumber8InputProcess(replacingTodoNumber, replacementTargetTodoNumber);
-                case 9:
-                    return ReturnMessageIsNumberOutsideRange();
-                case 10:
-                    return ReturnNull();
-                default:
-                    return OM.InputedNumberProcessingSelect(operationNumber);
-            }
+            if (operationNumber == 0)
+                return ReturnMessageIsProgramEnd();
+            if (operationNumber == 9)
+                return ReturnMessageIsNumberOutsideRange();
+            if (operationNumber == 10)
+                return ReturnNull();
+            if (operationNumber == 101)
+                return ReturnMessageIsExceptionDifferentStringFormat();
+
+            return operationManager.InvokeProcessFixOperationNumber(operationNumber);
+        }
+
+        /// <summary>
+        /// 操作番号1が選択された時の処理(TODO追加)
+        /// </summary>
+        public string OperationNumber1SelectedInAddProcess(string inputTodo)
+        {
+            return operationManager.ReceivedNumber1WhenAddProcess(inputTodo);
+        }
+
+        /// <summary>
+        /// 操作番号8が選択された時の処理（入れ替え番号選択時のTODOリストの表示）
+        /// </summary>
+        public void OperationNumber8SelectedInOutputProcess()
+        {
+            operationManager.ReceivedNumber8WhenOutputProcess();
         }
         /// <summary>
-        /// 追加するTODOを入力する
+        /// TODOリストの入れ替え
         /// </summary>
-        public string InputAddTodo()
+        public string PassingTodoReplacementElement(int SwapTodoNumber1, int SwapTodoNumber2)
+        {
+            if (SwapTodoNumber1 == 101)
+                return ReturnMessageIsExceptionDifferentStringFormat();
+            if (SwapTodoNumber2 == 101)
+                return ReturnMessageIsExceptionDifferentStringFormat();
+            return operationManager.ReceivedNumber8WhenSwapProcess(SwapTodoNumber1, SwapTodoNumber2);
+        }
+
+        /// <summary>
+        /// 追加するTODOの入力時に表示するメッセージ
+        /// </summary>
+        public void ShowMessageIsInputAddTodo()
         {
             Console.Write("追加するTODOを入力：");
-            var todoLine = Console.ReadLine();
-            return todoLine;
         }
         /// <summary>
-        /// 入れ替えるTODO番号を入力する
+        /// 一つ目の入れ替えたいTODO番号入力時に表示されるメッセージ
         /// </summary>
-        public int InputReplacingTodoNumber()
+        public void ShowMessageIsInputSwapTodoNumber1()
         {
-            Console.Write("入れ替えたいTODO番号を入力：");
-            var todoNumber = InputSwapNumberExceptionCheck();
-            return todoNumber;
+            Console.Write("一つ目のTODO番号を入力：");
         }
         /// <summary>
-        /// 入れ替え先のTODO番号を入力する
+        /// 二つ目の入れ替えたいTODO番号入力時に表示するメッセージ
         /// </summary>
-        public int InputReplacementTargetTodoNumber()
+        public void ShowMessageIsInputSwapTodoNumber2()
         {
-            Console.Write("入れ替え先のTODO番号を入力：");
-            var todoNumber = InputSwapNumberExceptionCheck();
-            return todoNumber;
+            Console.Write("二つ目のTODO番号を入力：");
         }
         /// <summary>
-        /// 入力されたTODO入れ替えの番号のチェックを行う
-        /// 例外が発生した場合は代わりに11を返す
-        /// </summary>
-        public int InputSwapNumberExceptionCheck()
-        {
-            try
-            {
-                var inputNumber = int.Parse(Console.ReadLine());
-                return inputNumber;
-            }
-            catch (FormatException error)
-            {
-                Console.WriteLine("[!] " + error.Message);
-                return 11;
-            }
-        }
-        /// <summary>
-        /// 数値が範囲外だった場合に返すエラーメッセージ
+        /// 入力した数値が範囲外だった場合に返すエラーメッセージ
         /// </summary>
         public string ReturnMessageIsNumberOutsideRange()
         {
             return "[!] 正しい操作番号を入力してください。";
         }
         /// <summary>
-        /// nullを返す
+        /// 入力した数値が半角数字以外だった場合に返すエラーメッセージ
         /// </summary>
-        public string ReturnNull()
+        public string ReturnMessageIsExceptionDifferentStringFormat()
         {
-            return null;
+            return "[!] 入力文字列の形式が正しくありません。";
         }
         /// <summary>
         /// プログラムを終了する場合に返すメッセージ
@@ -155,6 +127,13 @@ namespace TODOlist_ojt
         public string ReturnMessageIsProgramEnd()
         {
             return "<< 終了します >>";
+        }
+        /// <summary>
+        /// nullを返す
+        /// </summary>
+        public string ReturnNull()
+        {
+            return null;
         }
         /// <summary>
         /// 機能の一覧表を表示する
@@ -167,6 +146,7 @@ namespace TODOlist_ojt
             Console.WriteLine("| 4：TODO一覧の表示　5：最初に追加したTODOの削除　6：最後に追加したTODOの削除  |");
             Console.WriteLine("| 7：TODOの全削除　　8：TODOの入れ替え            0：終了                      |");
             Console.WriteLine("+------------------------------------------------------------------------------+");
+            Console.Write("操作番号を入力：");
         }
     }
 }

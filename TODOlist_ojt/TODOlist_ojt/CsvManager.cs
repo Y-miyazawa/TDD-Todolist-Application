@@ -14,8 +14,9 @@ namespace TODOlist_ojt
         private string CsvFilePath = "";
         public CsvManager()
         {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            CsvFilePath = currentDirectory + @"\" + CsvFileName;
+            string CurrentDirectory = Directory.GetCurrentDirectory();
+            //string Directory = @"C:\TDD_TestFile";
+            CsvFilePath = CurrentDirectory + @"\" + CsvFileName;
         }
         /// <summary>
         /// CSVファイルが無ければCSVファイルを生成する
@@ -65,7 +66,7 @@ namespace TODOlist_ojt
         /// 読み込みに成功した場合はCSVファイルのデータを格納したリストを返す
         /// 読み込みに失敗した場合は例外メッセージを出力し空のリストを返す
         /// </summary>
-        public List<string> LoadingProcessingToCsv()
+        public List<string> LoadingProcessToCsv()
         {
             var verifiedTodoList = new List<string>();
             try
@@ -85,7 +86,7 @@ namespace TODOlist_ojt
         public List<string> WriteCsvFileLoadedIntoCreatedTemporaryList()
         {
             CheckCsvFileCreate();
-            var temporaryTodoList = LoadingProcessingToCsv();
+            var temporaryTodoList = LoadingProcessToCsv();
             return temporaryTodoList;
         }
         /// <summary>
@@ -99,12 +100,12 @@ namespace TODOlist_ojt
                 foreach (var writeLine in temporaryTodoList)
                     writeCsvFile.WriteLine(writeLine);
             }
-            return ReturnMessageIsAddingComplete();
+            return ReturnMessageIsAdditionCompleted();
         }
         /// <summary>
         /// リストからCSVへの書き込み処理を行う
         /// </summary>
-        public string WriteProcessingToCsvFile(List<string> updatedTodoList)
+        public string WritingProcessToCsvFile(List<string> updatedTodoList)
         {
             var temporaryTodoList = new List<string>(updatedTodoList);
             try
@@ -127,7 +128,7 @@ namespace TODOlist_ojt
         /// CSVへの追加が完了した場合に返すメッセージ
         /// </summary>
         /// <returns></returns>
-        public string ReturnMessageIsAddingComplete()
+        public string ReturnMessageIsAdditionCompleted()
         {
             return "<< 追加しました >>";
         }

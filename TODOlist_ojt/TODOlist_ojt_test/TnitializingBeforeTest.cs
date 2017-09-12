@@ -13,6 +13,13 @@ namespace TODOlist_ojt_test
     /// </summary>
     public class TnitializingBeforeTest
     {
+        private string CsvFileName = "todolist.csv";
+        private string CsvFilePath = "";
+        public TnitializingBeforeTest()
+        {
+            string CurrentDirectory = Directory.GetCurrentDirectory();
+            CsvFilePath = CurrentDirectory + @"\" + CsvFileName;
+        }
         /// <summary>
         /// 各テストの開始前処理（要素数７）：
         /// CSVファイルに指定データを上書きして初期化を行う
@@ -51,7 +58,7 @@ namespace TODOlist_ojt_test
         private void WriteCsvFile(List<string> writeTodoList)
         {
             var temporaryTodoList = new List<string>(writeTodoList);
-            using (var csvTodoList = new StreamWriter(@"C:\Users\y.miyazawa\Documents\tododata.csv"))
+            using (var csvTodoList = new StreamWriter(CsvFilePath))
             {
                 foreach (var line in temporaryTodoList)
                     csvTodoList.WriteLine(line);

@@ -35,7 +35,7 @@ namespace TODOlist_ojt
             LoadCsvFileToTodoList();
             TodoList.RemoveAll(s => s == "");
             TodoList.Add(addTodoContent); 
-            return CM.WriteProcessingToCsvFile(TodoList);
+            return CM.WritingProcessToCsvFile(TodoList);
         }
 
         /// <summary>
@@ -61,17 +61,25 @@ namespace TODOlist_ojt
         /// <summary>
         /// TODOリストの内容を出力する
         /// </summary>
-        public void OutputTodoListContent()
+        //public void ReturnTodoListContent()
+        //{
+        //    LoadCsvFileToTodoList();
+        //    var todoNumber = 1;
+        //    Console.WriteLine("---------TODO一覧---------");
+        //    foreach (string outputLine in TodoList)
+        //    {
+        //        Console.WriteLine("{0}.{1}", todoNumber, outputLine);
+        //        todoNumber++;
+        //    }
+        //    Console.WriteLine("--------------------------");
+        //}
+
+        /// <summary>
+        /// TodoListを返す
+        /// </summary>
+        public List<string> ReturnTodoListContent()
         {
-            LoadCsvFileToTodoList();
-            var todoNumber = 1;
-            Console.WriteLine("---------TODO一覧---------");
-            foreach (string outputLine in TodoList)
-            {
-                Console.WriteLine("{0}.{1}", todoNumber, outputLine);
-                todoNumber++;
-            }
-            Console.WriteLine("--------------------------");
+            return TodoList;
         }
 
         /// <summary>
@@ -82,7 +90,7 @@ namespace TODOlist_ojt
             LoadCsvFileToTodoList();
             if (IsTodoListContentEmpty(TodoList))
                 return ReturnMessageIsListEmpty();
-            OutputTodoListContent();
+            ReturnTodoListContent();
             return ReturnMessageIsOutputAllTodo();
         }
 
@@ -97,7 +105,7 @@ namespace TODOlist_ojt
             var firstContent = 0;
             TodoList.RemoveAt(firstContent);
             TodoList.RemoveAll(s => s == "");
-            CM.WriteProcessingToCsvFile(TodoList);
+            CM.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -111,7 +119,7 @@ namespace TODOlist_ojt
             var lastContent = TodoList.Count - 1;
             TodoList.RemoveAt(lastContent);
             TodoList.RemoveAll(s => s == "");
-            CM.WriteProcessingToCsvFile(TodoList);
+            CM.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -123,7 +131,7 @@ namespace TODOlist_ojt
             if (IsTodoListContentEmpty(TodoList))
                 return ReturnMessageIsListEmpty();
             TodoList.Clear();
-            CM.WriteProcessingToCsvFile(TodoList);
+            CM.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveAllTodo();
         }
         /// <summary>
@@ -146,7 +154,7 @@ namespace TODOlist_ojt
                 return ReturnMessageIsEqualValueSpecified();
 
             SwapSelectedTwoTodoOrder(replacingPosition, taegetPosition);
-                CM.WriteProcessingToCsvFile(TodoList);
+                CM.WritingProcessToCsvFile(TodoList);
                 return ReturnMessageIsSwapTodo();
         }
         /// <summary>
@@ -197,11 +205,11 @@ namespace TODOlist_ojt
             return "[！] リストにTODOデータが存在しません。";
         }
         /// <summary>
-        /// 選択された要素番号が同一だった場合に返すメッセージ
+        /// 選択された要素番号が同じだった場合に返すメッセージ
         /// </summary>
         public string ReturnMessageIsEqualValueSpecified()
         {
-            return "[！] 入れ替え元と入れ替え先が同一です。";
+            return "[！] 入力された二つのTODO番号が同じ値です。";
         }
 
         /// <summary>

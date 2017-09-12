@@ -7,3 +7,12 @@ c:\users\y.miyazawa\documents\visual studio 2015\Projects\TODOlist_ojt\TODOlist_
 c:\users\y.miyazawa\documents\visual studio 2015\Projects\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.csprojResolveAssemblyReference.cache
 c:\users\y.miyazawa\documents\visual studio 2015\Projects\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.dll
 c:\users\y.miyazawa\documents\visual studio 2015\Projects\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\TODOlist_ojt_test.dll
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\TODOlist_ojt_test.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\nunit.framework.dll
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\TODOlist_ojt.dll
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\TODOlist_ojt.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\bin\Debug\nunit.framework.xml
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.csprojResolveAssemblyReference.cache
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.dll
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\TODOlist_ojt_test\obj\Debug\TODOlist_ojt_test.pdb

@@ -6,3 +6,11 @@ C:\Users\y.miyazawa\Documents\Visual Studio 2015\Projects\TODOlist_ojt\Todolist_
 C:\Users\y.miyazawa\Documents\Visual Studio 2015\Projects\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.csprojResolveAssemblyReference.cache
 C:\Users\y.miyazawa\Documents\Visual Studio 2015\Projects\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.exe
 C:\Users\y.miyazawa\Documents\Visual Studio 2015\Projects\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\bin\Debug\Todolist_Application_ojt.exe.config
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.exe
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\bin\Debug\Todolist_Application_ojt.exe
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\bin\Debug\Todolist_Application_ojt.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\bin\Debug\TODOlist_ojt.dll
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\bin\Debug\TODOlist_ojt.pdb
+C:\TODOList_TDD\TDD-Todolist-Application\TODOlist_ojt\Todolist_Application_ojt\obj\Debug\Todolist_Application_ojt.csprojResolveAssemblyReference.cache

@@ -19,9 +19,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             TM.AddTodoContentToTodoListProcess(inputTodoContents);
-            var todoListForTest = new List<string>(TM.todoList);
+            var todoListForTest = new List<string>(TM.TodoList);
             var expectedTodoString = todoListForTest[todoListForTest.Count - 1];
             Assert.AreEqual(expectedTodoString, inputTodoContents);
         }
@@ -30,10 +30,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
-            TM.LoadCsvFiletoTodoList();
-            var expectedTodoString = TM.todoList[0];
-            var firstTodo = TM.AcquisitionFirstTodoProcess();
+            var TM = new TodoListManager();
+            TM.LoadCsvFileToTodoList();
+            var expectedTodoString = TM.TodoList[0];
+            var firstTodo = TM.AcquisitionFirstTodo();
             Assert.AreEqual(expectedTodoString, firstTodo);
         }
         [Test]
@@ -41,22 +41,22 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
-            TM.LoadCsvFiletoTodoList();
-            var todoListForTest = new List<string>(TM.todoList);
+            var TM = new TodoListManager();
+            TM.LoadCsvFileToTodoList();
+            var todoListForTest = new List<string>(TM.TodoList);
             var expectedTodoString = todoListForTest[todoListForTest.Count - 1];
-            var lastTodoString = TM.AcquisitionLastTodoProcess();
+            var lastTodoString = TM.AcquisitionLastTodo();
             Assert.AreEqual(expectedTodoString, lastTodoString);
         }
         [Test]
-        public void 全てのTODOの取得すると出力完了メッセージが返ってくる()
+        public void 全てのTODOの取得すると完了メッセージが返ってくる()
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsOutputAllTodo();
-            var todoListForTest = new List<string>(TM.todoList);
-            var requestString = TM.OutputAllTodoProcess();
+            var todoListForTest = new List<string>(TM.TodoList);
+            var requestString = TM.OutputAllTodo();
             Assert.AreEqual(expectedString, requestString);
         }
         [Test]
@@ -64,9 +64,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsRemoveTodo();
-            var returnString = TM.RemoveFirstTodoProcess();
+            var returnString = TM.RemoveFirstTodo();
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -74,7 +74,7 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsRemoveTodo();
             var returnString = TM.RemoveLastTodo();
             Assert.AreEqual(expectedString, returnString);
@@ -84,7 +84,7 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsRemoveAllTodo();
             var returnString = TM.RemoveAllTodo();
             Assert.AreEqual(expectedString, returnString);
@@ -96,21 +96,21 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
-            var beforeTodoList = new List<string>(TM.todoList);
-            var returnString = TM.SwapTodoProcess(replacingPosition, taegetPosition);
-            CollectionAssert.AreNotEqual(TM.todoList, beforeTodoList);
+            var TM = new TodoListManager();
+            var beforeTodoList = new List<string>(TM.TodoList);
+            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
+            CollectionAssert.AreNotEqual(TM.TodoList, beforeTodoList);
         }
         [TestCase(1, 8)]
         [TestCase(5, 9)]
         [TestCase(10, 2)]
-        public void TODO入れ替えの際に範囲外の数値を入力するとエラーメッセージが返ってくる(int replacingPosition, int taegetPosition)
+        public void TODO入れ替えの際にTODOリストの範囲外の数値を入力するとエラーメッセージが返ってくる(int replacingPosition, int taegetPosition)
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsNumberRangeOutsideTodo();
-            var returnString = TM.SwapTodoProcess(replacingPosition, taegetPosition);
+            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase(1, 2)]
@@ -120,22 +120,22 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_1();
-            var TM = new TodolistManager();
-            var expectedString = TM.ReturnMessageIsTodolistElementsCountIsOne();
-            var returnString = TM.SwapTodoProcess(replacingPosition, taegetPosition);
+            var TM = new TodoListManager();
+            var expectedString = TM.ReturnMessageIsTodoListElementsCountIsOne();
+            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase(1, 2)]
         [TestCase(3, 4)]
         [TestCase(5, 6)]
-        public void TODO入れ替えの際にリストが空ならエラーメッセージが返ってくる(int replacingPosition, int taegetPosition)
+        public void TODO入れ替えの際にTODOリストが空ならエラーメッセージが返ってくる(int replacingPosition, int taegetPosition)
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             TM.RemoveAllTodo();
-            var expectedString = TM.ReturnMessageIsListempty();
-            var returnString = TM.SwapTodoProcess(replacingPosition, taegetPosition);
+            var expectedString = TM.ReturnMessageIsListEmpty();
+            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
 
@@ -146,9 +146,9 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodolistManager();
+            var TM = new TodoListManager();
             var expectedString = TM.ReturnMessageIsEqualValueSpecified();
-            var returnString = TM.SwapTodoProcess(replacingPosition, taegetPosition);
+            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
 

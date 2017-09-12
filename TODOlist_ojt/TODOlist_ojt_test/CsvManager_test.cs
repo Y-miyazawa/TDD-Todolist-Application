@@ -14,7 +14,7 @@ namespace TODOlist_ojt_test
         TnitializingBeforeTest startProcess = new TnitializingBeforeTest();
 
         [TestCase(true)]
-        public void CSVファイルの有無を確認し存在するならtrueを返す(bool expectedValue)
+        public void CSVファイルが存在するならtrueを返す(bool expectedValue)
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
@@ -23,26 +23,25 @@ namespace TODOlist_ojt_test
             Assert.AreEqual(expectedValue, decision);
         }
         [TestCase(true)]
-        public void CSVファイルを読み込こんで成功したら空ではないリストが返ってくる(bool expectedValue)
+        public void CSVファイルの読み込みに成功すると空ではないリストが返ってくる(bool expectedValue)
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
             var CM = new CsvManager();
             var testlist = new List<string>();
-            testlist = CM.LoadingProcessingToCsv();
+            testlist = CM.LoadingProcessToCsv();
             CollectionAssert.AllItemsAreNotNull(testlist);
         }
         [Test]
-        public void CSVファイルに書き込んで成功したら成功メッセージが返ってくる()
+        public void CSVファイルの書き込みに成功すると成功メッセージが返ってくる()
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
             var CM = new CsvManager();
-            var expectedString = CM.ReturnMessageIsAddingComplete();
+            var expectedString = CM.ReturnMessageIsAdditionCompleted();
             var WriteTodoListTest = new List<string> { "xx", "yy", "zz" };
-            var ReturnMessage = CM.WriteProcessingToCsvFile(WriteTodoListTest);
+            var ReturnMessage = CM.WritingProcessToCsvFile(WriteTodoListTest);
             Assert.AreEqual(expectedString, ReturnMessage);
         }
-
     }
 }

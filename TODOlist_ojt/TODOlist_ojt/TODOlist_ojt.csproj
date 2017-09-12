@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CsvManager.cs" />
+    <Compile Include="ConsoleManager.cs" />
     <Compile Include="OperationManager.cs" />
     <Compile Include="OperationSelect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
