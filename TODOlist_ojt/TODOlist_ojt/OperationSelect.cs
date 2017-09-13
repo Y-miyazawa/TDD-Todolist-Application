@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace TODOlist_ojt
 {
@@ -8,15 +8,6 @@ namespace TODOlist_ojt
     {
         OperationManager operationManager = new OperationManager();
         
-        /// <summary>
-        /// 返ってきた文字列を出力する
-        /// </summary>
-        public void ShowReturnMessage(string showString)
-        {
-            if (showString != null)
-                Console.WriteLine(showString);
-        }
-
         /// <summary>
         /// 受け取った数値が使用可能かチェックする
         /// </summary>
@@ -86,26 +77,31 @@ namespace TODOlist_ojt
             return operationManager.ReceivedNumber8WhenSwapProcess(SwapTodoNumber1, SwapTodoNumber2);
         }
 
-        /// <summary>
-        /// 追加するTODOの入力時に表示するメッセージ
-        /// </summary>
-        public void ShowMessageIsInputAddTodo()
+        public string ReturnMessageIsInputNumber()
         {
-            Console.Write("追加するTODOを入力：");
+            return "操作番号を入力：";
+        }
+
+        /// <summary>
+        /// 追加するTODOの入力時に返すメッセージ
+        /// </summary>
+        public string ReturnMessageIsInputAddTodo()
+        {
+            return "追加するTODOを入力：";
         }
         /// <summary>
-        /// 一つ目の入れ替えたいTODO番号入力時に表示されるメッセージ
+        /// 一つ目の入れ替えたいTODO番号入力時に返すメッセージ
         /// </summary>
-        public void ShowMessageIsInputSwapTodoNumber1()
+        public string ReturnMessageIsInputSwapTodoNumber1()
         {
-            Console.Write("一つ目のTODO番号を入力：");
+            return "一つ目のTODO番号を入力：";
         }
         /// <summary>
-        /// 二つ目の入れ替えたいTODO番号入力時に表示するメッセージ
+        /// 二つ目の入れ替えたいTODO番号入力時に返すメッセージ
         /// </summary>
-        public void ShowMessageIsInputSwapTodoNumber2()
+        public string ReturnMessageIsInputSwapTodoNumber2()
         {
-            Console.Write("二つ目のTODO番号を入力：");
+            return "二つ目のTODO番号を入力：";
         }
         /// <summary>
         /// 入力した数値が範囲外だった場合に返すエラーメッセージ
@@ -136,17 +132,17 @@ namespace TODOlist_ojt
             return null;
         }
         /// <summary>
-        /// 機能の一覧表を表示する
+        /// 機能の一覧表をString型のリスト配列で返す
         /// </summary>
-        public void ShowFunctionList()
+        public List<string> ReturnFunctionList()
         {
-            Console.WriteLine();
-            Console.WriteLine("+-----------------------------------機能一覧-----------------------------------+");
-            Console.WriteLine("| 1：TODOの追加　 　 2：最初に追加したTODOの表示　3：最後に追加したTODOの表示  |");
-            Console.WriteLine("| 4：TODO一覧の表示　5：最初に追加したTODOの削除　6：最後に追加したTODOの削除  |");
-            Console.WriteLine("| 7：TODOの全削除　　8：TODOの入れ替え            0：終了                      |");
-            Console.WriteLine("+------------------------------------------------------------------------------+");
-            Console.Write("操作番号を入力：");
+            var functionList = new List<string>();
+            functionList.Add("+-----------------------------------機能一覧-----------------------------------+");
+            functionList.Add("| 1：TODOの追加　 　 2：最初に追加したTODOの表示　3：最後に追加したTODOの表示  |");
+            functionList.Add("| 4：TODO一覧の表示　5：最初に追加したTODOの削除　6：最後に追加したTODOの削除  |");
+            functionList.Add("| 7：TODOの全削除　　8：TODOの入れ替え            0：終了                      |");
+            functionList.Add("+------------------------------------------------------------------------------+");
+            return functionList;
         }
     }
 }

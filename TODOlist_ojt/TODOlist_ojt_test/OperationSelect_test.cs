@@ -142,5 +142,13 @@ namespace TODOlist_ojt_test
             var returnString = OS.PassingTodoReplacementElement(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
+
+        [Test]
+        public void 機能一覧表を呼び出すとリスト配列で返ってくる()
+        {
+            var operationSelect = new OperationSelect();
+            var retunList = operationSelect.ReturnFunctionList();
+            CollectionAssert.AllItemsAreNotNull(retunList);
+        }
     }
 }

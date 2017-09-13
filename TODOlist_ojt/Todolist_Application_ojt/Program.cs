@@ -10,49 +10,61 @@ namespace Todolist_Application_ojt
 {
     public class Program
     {
-
         static void Main(string[] args)
         {
+
             var operationSelect = new OperationSelect();
             var consoleManager = new ConsoleManager();
-            var ShowString = "";
+            var csvManager = new CsvManager();
+            var showString = "";
             var inputNumber = 0;
 
+            string showText = csvManager.CheckCsvFileCreate();
+            consoleManager.ShowMessageIsCreateCsvFile(showText);
+            
             while (true)
             {
-                operationSelect.ShowFunctionList();
+                var functionList = operationSelect.ReturnFunctionList();
+                consoleManager.ShowStringTypeList(functionList);
+
+                var inputNumberText = operationSelect.ReturnMessageIsInputNumber();
+                consoleManager.ShowNonbreakingMessage(inputNumberText);
+
                 inputNumber = consoleManager.InputNumberFromConsole();
                 inputNumber = operationSelect.CheckNumberAvailableRange(inputNumber);
-
+                
                 if (inputNumber == 1)
                 {
-                    operationSelect.ShowMessageIsInputAddTodo();
+                    var addTodoText = operationSelect.ReturnMessageIsInputAddTodo();
+                    consoleManager.ShowNonbreakingMessage(addTodoText);
                     var inputString = consoleManager.InputStringFromConsole();
-                    ShowString = operationSelect.OperationNumber1SelectedInAddProcess(inputString);
+                    showString = operationSelect.OperationNumber1SelectedInAddProcess(inputString);
                 }
                 if (inputNumber == 8)
                 {
                     operationSelect.OperationNumber8SelectedInOutputProcess();
-                    operationSelect.ShowMessageIsInputSwapTodoNumber1();
+                    var displayMessageIsInputSwapNumber1 = operationSelect.ReturnMessageIsInputSwapTodoNumber1();
+                    consoleManager.ShowNonbreakingMessage(displayMessageIsInputSwapNumber1);
                     var inputNumber1 = consoleManager.InputNumberFromConsole();
-                    operationSelect.ShowMessageIsInputSwapTodoNumber2();
+
+                    var displayMessageIsInputSwapNumber2 = operationSelect.ReturnMessageIsInputSwapTodoNumber2();
+                    consoleManager.ShowNonbreakingMessage(displayMessageIsInputSwapNumber2);
                     var inputNumber2 = consoleManager.InputNumberFromConsole();
-                    ShowString = operationSelect.PassingTodoReplacementElement(inputNumber1, inputNumber2);
+
+                    showString = operationSelect.PassingTodoReplacementElement(inputNumber1, inputNumber2);
                 }
                 if (inputNumber != 1 && inputNumber != 8)
                 {
-                    ShowString = operationSelect.InvokeInputedNumberFixProcess(inputNumber);
+                    showString = operationSelect.InvokeInputedNumberFixProcess(inputNumber);
                 }
 
-                operationSelect.ShowReturnMessage(ShowString);
+                if (showString != null)
+                    consoleManager.ShowStringMessage(showString);
 
-                if (operationSelect.IsCheckEndString(ShowString))
+                if (operationSelect.IsCheckEndString(showString))
                     break;
                 
             }
         }
-
-
-
     }
 }

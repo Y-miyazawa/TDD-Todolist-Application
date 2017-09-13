@@ -21,15 +21,18 @@ namespace TODOlist_ojt
         /// <summary>
         /// CSVファイルが無ければCSVファイルを生成する
         /// </summary>
-        public void CheckCsvFileCreate()
+        public string CheckCsvFileCreate()
         {
             if (!IsExistsCsv())
-                CreateCsvFile();
+                return CreateCsvFile();
+            return "";
         }
+
+
         /// <summary>
         /// CSVファイルの有無を確認する
         /// </summary>
-        public bool IsExistsCsv()
+        private bool IsExistsCsv()
         {
             return File.Exists(CsvFilePath) ? true : false;
         }
@@ -37,14 +40,14 @@ namespace TODOlist_ojt
         /// <summary>
         /// CSVファイルの生成を行う
         /// </summary>
-        public void CreateCsvFile()
+        private string CreateCsvFile()
         {
             using (var todoFile = File.Create(CsvFilePath))
             {
                 if (todoFile != null)
                     todoFile.Close(); 
             }
-            Console.WriteLine(ReturnMessageIsCreateCsvFile());
+             return ReturnMessageIsCreateCsvFile();
         }
         /// <summary>
         /// リストにCSVファイルの内容を読み込む

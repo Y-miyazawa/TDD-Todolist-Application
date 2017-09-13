@@ -59,22 +59,6 @@ namespace TODOlist_ojt
             return TodoList[TodoList.Count - 1];
         }
         /// <summary>
-        /// TODOリストの内容を出力する
-        /// </summary>
-        //public void ReturnTodoListContent()
-        //{
-        //    LoadCsvFileToTodoList();
-        //    var todoNumber = 1;
-        //    Console.WriteLine("---------TODO一覧---------");
-        //    foreach (string outputLine in TodoList)
-        //    {
-        //        Console.WriteLine("{0}.{1}", todoNumber, outputLine);
-        //        todoNumber++;
-        //    }
-        //    Console.WriteLine("--------------------------");
-        //}
-
-        /// <summary>
         /// TodoListを返す
         /// </summary>
         public List<string> ReturnTodoListContent()

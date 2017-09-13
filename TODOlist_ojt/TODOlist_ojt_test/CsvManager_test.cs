@@ -43,5 +43,15 @@ namespace TODOlist_ojt_test
             var ReturnMessage = CM.WritingProcessToCsvFile(WriteTodoListTest);
             Assert.AreEqual(expectedString, ReturnMessage);
         }
+        [Test]
+        public void CSVファイルが生成されると成功メッセージが返ってくる()
+        {
+            //CSVの初期化
+            startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
+            var csvManager = new CsvManager();
+            var expectedString = csvManager.ReturnMessageIsCreateCsvFile();
+            var returnMessage = csvManager.CreateCsvFile();
+            Assert.AreEqual(expectedString,returnMessage);
+        }
     }
 }
