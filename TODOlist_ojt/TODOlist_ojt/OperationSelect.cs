@@ -59,6 +59,15 @@ namespace TODOlist_ojt
         }
 
         /// <summary>
+        /// TODOリストを取得する
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetAllTodoList()
+        {
+            return operationManager.RequestOutputAllTodo();
+        }
+
+        /// <summary>
         /// 操作番号8が選択された時の処理（入れ替え番号選択時のTODOリストの表示）
         /// </summary>
         public void OperationNumber8SelectedInOutputProcess()

@@ -14,6 +14,7 @@ namespace TODOlist_ojt_test
     public class TnitializingBeforeTest
     {
         private string CsvFileName = "todolist.csv";
+
         private string CsvFilePath = "";
         public TnitializingBeforeTest()
         {

@@ -14,15 +14,6 @@ namespace TODOlist_ojt_test
         TnitializingBeforeTest startProcess = new TnitializingBeforeTest();
 
         [TestCase(true)]
-        public void CSVファイルが存在するならtrueを返す(bool expectedValue)
-        {
-            //CSVの初期化
-            startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var CM = new CsvManager();
-            var decision = CM.IsExistsCsv();
-            Assert.AreEqual(expectedValue, decision);
-        }
-        [TestCase(true)]
         public void CSVファイルの読み込みに成功すると空ではないリストが返ってくる(bool expectedValue)
         {
             //CSVの初期化
@@ -44,14 +35,20 @@ namespace TODOlist_ojt_test
             Assert.AreEqual(expectedString, ReturnMessage);
         }
         [Test]
-        public void CSVファイルが生成されると成功メッセージが返ってくる()
+        public void CSVファイルが存在するとNullが返ってくる()
         {
-            //CSVの初期化
-            startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
             var csvManager = new CsvManager();
-            var expectedString = csvManager.ReturnMessageIsCreateCsvFile();
-            var returnMessage = csvManager.CreateCsvFile();
+            string expectedString = null;
+            var returnMessage = csvManager.CheckCsvFileCreate();
             Assert.AreEqual(expectedString,returnMessage);
+        }
+        [Test,Explicit]
+        public void CSVファイルを新規作成すると作成完了メッセージが返ってくる()
+        {
+            var csvManager = new CsvManager();
+            string expectedString = csvManager.ReturnMessageIsCreateCsvFile();
+            var returnMessage = csvManager.CheckCsvFileCreate();
+            Assert.AreEqual(expectedString, returnMessage);
         }
     }
 }

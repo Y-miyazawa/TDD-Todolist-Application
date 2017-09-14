@@ -69,14 +69,14 @@ namespace TODOlist_ojt
         /// <summary>
         /// 全てのTODOを出力する処理
         /// </summary>
-        public string OutputAllTodo()
-        {
-            LoadCsvFileToTodoList();
-            if (IsTodoListContentEmpty(TodoList))
-                return ReturnMessageIsListEmpty();
-            ReturnTodoListContent();
-            return ReturnMessageIsOutputAllTodo();
-        }
+        //public string OutputAllTodo()
+        //{
+        //    LoadCsvFileToTodoList();
+        //    if (IsTodoListContentEmpty(TodoList))
+        //        return ReturnMessageIsListEmpty();
+        //    ReturnTodoListContent();
+        //    return ReturnMessageIsOutputAllTodo();
+        //}
 
         /// <summary>
         /// 最初のTODOを削除する

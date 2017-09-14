@@ -22,8 +22,6 @@ namespace TODOlist_ojt
                 return RequestOutputFirstTodo();
             if (operationNumber == 3)
                 return RequestOutputLastTodo();
-            if (operationNumber == 4)
-                return RequestOutputAllTodo();
             if (operationNumber == 5)
                 return RequestRemoveFirstTodo();
             if (operationNumber == 6)
@@ -77,9 +75,9 @@ namespace TODOlist_ojt
         /// <summary>
         /// 全てのTODOの取得処理を呼び出す
         /// </summary>
-        public string RequestOutputAllTodo()
+        public List<string> RequestOutputAllTodo()
         {
-            return todolistManager.OutputAllTodo();
+            return todolistManager.ReturnTodoListContent();
         }
         /// <summary>
         /// 最初のTODOの削除処理を呼び出す

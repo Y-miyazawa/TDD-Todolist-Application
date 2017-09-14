@@ -88,15 +88,15 @@ namespace TODOlist_ojt_test
 
         }
         [Test]
-        public void TODO一覧表示を選択すると完了メッセージが返ってくる()
+        public void TODO一覧表示を選択するとList型配列が返ってくる()
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
             var TM = new TodoListManager();
             var OS = new OperationSelect();
-            var expectedString = TM.OutputAllTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(4);
-            Assert.AreEqual(expectedString, returnString);
+            var expectedList = TM.TodoList;
+            var returnList = OS.GetAllTodoList();
+            CollectionAssert.AreEqual(expectedList, returnList);
         }
         [Test]
         public void 最初のTODO削除を選択すると完了メッセージが返ってくる()

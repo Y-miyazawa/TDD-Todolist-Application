@@ -40,9 +40,17 @@ namespace Todolist_Application_ojt
                     var inputString = consoleManager.InputStringFromConsole();
                     showString = operationSelect.OperationNumber1SelectedInAddProcess(inputString);
                 }
+                if (inputNumber == 4)
+                {
+                    var todoList = operationSelect.GetAllTodoList();
+                    consoleManager.ShowAllTodo(todoList);
+                }
+
                 if (inputNumber == 8)
                 {
-                    operationSelect.OperationNumber8SelectedInOutputProcess();
+                    var todoList = operationSelect.GetAllTodoList();
+                    consoleManager.ShowAllTodo(todoList);
+
                     var displayMessageIsInputSwapNumber1 = operationSelect.ReturnMessageIsInputSwapTodoNumber1();
                     consoleManager.ShowNonbreakingMessage(displayMessageIsInputSwapNumber1);
                     var inputNumber1 = consoleManager.InputNumberFromConsole();
@@ -53,7 +61,7 @@ namespace Todolist_Application_ojt
 
                     showString = operationSelect.PassingTodoReplacementElement(inputNumber1, inputNumber2);
                 }
-                if (inputNumber != 1 && inputNumber != 8)
+                if (inputNumber != 1 && inputNumber !=4 && inputNumber != 8)
                 {
                     showString = operationSelect.InvokeInputedNumberFixProcess(inputNumber);
                 }

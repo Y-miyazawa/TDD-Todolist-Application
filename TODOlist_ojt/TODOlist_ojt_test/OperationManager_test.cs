@@ -46,15 +46,15 @@ namespace TODOlist_ojt_test
             Assert.AreEqual(expectedString, requestString);
         }
         [Test]
-        public void TODO一覧を取得すると完了メッセージが返ってくる()
+        public void TODO一覧を取得するとList型配列が返ってくる()
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
             var OM = new OperationManager();
             var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsOutputAllTodo();
-            var requestString = OM.InvokeProcessFixOperationNumber(4);
-            Assert.AreEqual(expectedString, requestString);
+            var expectedList = new List<string>(TM.TodoList);
+            var returnList = OM.RequestOutputAllTodo();
+            CollectionAssert.AreEqual(expectedList, returnList);
         }
         [Test]
         public void 最初のTODOを削除すると完了メッセージが返ってくる()

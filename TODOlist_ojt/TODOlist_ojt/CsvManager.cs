@@ -25,7 +25,7 @@ namespace TODOlist_ojt
         {
             if (!IsExistsCsv())
                 return CreateCsvFile();
-            return "";
+            return null;
         }
 
 
@@ -64,10 +64,18 @@ namespace TODOlist_ojt
             return readTodoList;
         }
         /// <summary>
+        /// CSVデータを読み込み仮TODOリストを作成して返す
+        /// </summary>
+        public List<string> WriteCsvFileLoadedIntoCreatedTemporaryList()
+        {
+            var temporaryTodoList = LoadingProcessToCsv();
+            return temporaryTodoList;
+        }
+        /// <summary>
         /// CSVからリストへの読み込み処理を行う
         /// 読み込み時にCSVファイルの例外チェックを行い
         /// 読み込みに成功した場合はCSVファイルのデータを格納したリストを返す
-        /// 読み込みに失敗した場合は例外メッセージを出力し空のリストを返す
+        /// 読み込みに失敗した場合は例外を投げる
         /// </summary>
         public List<string> LoadingProcessToCsv()
         {
@@ -78,19 +86,8 @@ namespace TODOlist_ojt
             }
             catch (Exception error)
             {
-                Console.WriteLine(ReturnMessageIsExceptionError(error));
-                return verifiedTodoList;
+                throw error;
             }
-        }
-        
-        /// <summary>
-        /// CSVデータを読み込み仮TODOリストを作成して返す
-        /// </summary>
-        public List<string> WriteCsvFileLoadedIntoCreatedTemporaryList()
-        {
-            CheckCsvFileCreate();
-            var temporaryTodoList = LoadingProcessToCsv();
-            return temporaryTodoList;
         }
         /// <summary>
         /// CSVファイルにリスト内容を書き込む
