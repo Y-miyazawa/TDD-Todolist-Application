@@ -74,10 +74,5 @@ namespace TODOlist_ojt
             }
             Console.WriteLine("--------------------------");
         }
-        public void ShowMessageIsCreateCsvFile(string showText)
-        {
-            var csvManager = new CsvManager();
-            Console.WriteLine(showText);
-        }
     }
 }

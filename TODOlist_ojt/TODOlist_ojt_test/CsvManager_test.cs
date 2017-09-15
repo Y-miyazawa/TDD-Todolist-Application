@@ -18,9 +18,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var CM = new CsvManager();
+            var csvManager = new CsvManager();
             var testlist = new List<string>();
-            testlist = CM.LoadingProcessToCsv();
+            testlist = csvManager.LoadingProcessToCsv();
             CollectionAssert.AllItemsAreNotNull(testlist);
         }
         [Test]
@@ -28,10 +28,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var CM = new CsvManager();
-            var expectedString = CM.ReturnMessageIsAdditionCompleted();
+            var csvManager = new CsvManager();
+            var expectedString = csvManager.ReturnMessageIsAdditionCompleted();
             var WriteTodoListTest = new List<string> { "xx", "yy", "zz" };
-            var ReturnMessage = CM.WritingProcessToCsvFile(WriteTodoListTest);
+            var ReturnMessage = csvManager.WritingProcessToCsvFile(WriteTodoListTest);
             Assert.AreEqual(expectedString, ReturnMessage);
         }
         [Test]

@@ -16,60 +16,61 @@ namespace Todolist_Application_ojt
             var operationSelect = new OperationSelect();
             var consoleManager = new ConsoleManager();
             var csvManager = new CsvManager();
-            var showString = "";
+            var showMessage = "";
             var inputNumber = 0;
 
-            string showText = csvManager.CheckCsvFileCreate();
-            consoleManager.ShowMessageIsCreateCsvFile(showText);
-            
+            string csvCreateMessage = csvManager.CheckCsvFileCreate();  
+            if(csvCreateMessage != null)
+                consoleManager.ShowStringMessage(csvCreateMessage);
+
             while (true)
             {
-                var functionList = operationSelect.ReturnFunctionList();
-                consoleManager.ShowStringTypeList(functionList);
+                var functionDisplayList = operationSelect.ReturnFunctionList();
+                consoleManager.ShowStringTypeList(functionDisplayList);
 
-                var inputNumberText = operationSelect.ReturnMessageIsInputNumber();
-                consoleManager.ShowNonbreakingMessage(inputNumberText);
+                var numberInputDisplayText = operationSelect.ReturnMessageIsInputNumber();
+                consoleManager.ShowNonbreakingMessage(numberInputDisplayText);
 
                 inputNumber = consoleManager.InputNumberFromConsole();
-                inputNumber = operationSelect.CheckNumberAvailableRange(inputNumber);
+                inputNumber = operationSelect.CheckUsableNumber(inputNumber);
                 
                 if (inputNumber == 1)
                 {
-                    var addTodoText = operationSelect.ReturnMessageIsInputAddTodo();
-                    consoleManager.ShowNonbreakingMessage(addTodoText);
-                    var inputString = consoleManager.InputStringFromConsole();
-                    showString = operationSelect.OperationNumber1SelectedInAddProcess(inputString);
+                    var addTodoDisplayText = operationSelect.ReturnMessageIsInputAddTodo();
+                    consoleManager.ShowNonbreakingMessage(addTodoDisplayText);
+                    var inputTodoString = consoleManager.InputStringFromConsole();
+                    showMessage = operationSelect.OperationNumber1SelectedInAddProcess(inputTodoString);
                 }
                 if (inputNumber == 4)
                 {
-                    var todoList = operationSelect.GetAllTodoList();
-                    consoleManager.ShowAllTodo(todoList);
+                    var displayTodoList = operationSelect.GetAllTodoList();
+                    consoleManager.ShowAllTodo(displayTodoList);
                 }
 
                 if (inputNumber == 8)
                 {
-                    var todoList = operationSelect.GetAllTodoList();
-                    consoleManager.ShowAllTodo(todoList);
+                    var displayTodoList = operationSelect.GetAllTodoList();
+                    consoleManager.ShowAllTodo(displayTodoList);
 
-                    var displayMessageIsInputSwapNumber1 = operationSelect.ReturnMessageIsInputSwapTodoNumber1();
-                    consoleManager.ShowNonbreakingMessage(displayMessageIsInputSwapNumber1);
+                    var iputSwapNumber1DisplayMessage = operationSelect.ReturnMessageIsInputSwapTodoNumber1();
+                    consoleManager.ShowNonbreakingMessage(iputSwapNumber1DisplayMessage);
                     var inputNumber1 = consoleManager.InputNumberFromConsole();
 
-                    var displayMessageIsInputSwapNumber2 = operationSelect.ReturnMessageIsInputSwapTodoNumber2();
-                    consoleManager.ShowNonbreakingMessage(displayMessageIsInputSwapNumber2);
+                    var inputSwapNumber2DisplayMessage = operationSelect.ReturnMessageIsInputSwapTodoNumber2();
+                    consoleManager.ShowNonbreakingMessage(inputSwapNumber2DisplayMessage);
                     var inputNumber2 = consoleManager.InputNumberFromConsole();
 
-                    showString = operationSelect.PassingTodoReplacementElement(inputNumber1, inputNumber2);
+                    showMessage = operationSelect.CheckReturnExceptionMessage(inputNumber1, inputNumber2);
                 }
                 if (inputNumber != 1 && inputNumber !=4 && inputNumber != 8)
                 {
-                    showString = operationSelect.InvokeInputedNumberFixProcess(inputNumber);
+                    showMessage = operationSelect.InvokeInputedNumberFixProcess(inputNumber);
                 }
 
-                if (showString != null)
-                    consoleManager.ShowStringMessage(showString);
+                if (showMessage != null)
+                    consoleManager.ShowStringMessage(showMessage);
 
-                if (operationSelect.IsCheckEndString(showString))
+                if (operationSelect.IsCheckEndMessage(showMessage))
                     break;
                 
             }

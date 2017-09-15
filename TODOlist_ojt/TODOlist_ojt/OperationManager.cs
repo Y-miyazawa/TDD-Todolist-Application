@@ -38,13 +38,6 @@ namespace TODOlist_ojt
             return RequestAddTodo(addTodoString);
         }
         /// <summary>
-        /// 受け取った数値が８の場合、TODOの一覧を表示する
-        /// </summary>
-        public void ReceivedNumber8WhenOutputProcess()
-        {
-            todolistManager.ReturnTodoListContent();
-        }
-        /// <summary>
         /// 受け取った数値が８の場合の処理（TODOの入れ替え）
         /// </summary>
         public string ReceivedNumber8WhenSwapProcess(int replacingPosition, int targetPosition)
@@ -59,49 +52,49 @@ namespace TODOlist_ojt
             return todolistManager.AddTodoContentToTodoListProcess(addTodoString);
         }
         /// <summary>
-        /// 最初に追加したTODOの取得処理を呼び出す
+        /// 最初に追加したTODOを取得する処理を呼び出す
         /// </summary>
         public string RequestOutputFirstTodo()
         {
             return todolistManager.AcquisitionFirstTodo();
         }
         /// <summary>
-        /// 最後に追加したTODOの取得処理を呼び出す
+        /// 最後に追加したTODOを取得する処理を呼び出す
         /// </summary>
         public string RequestOutputLastTodo()
         {
             return todolistManager.AcquisitionLastTodo();
         }
         /// <summary>
-        /// 全てのTODOの取得処理を呼び出す
+        /// 全てのTODOを取得する処理を呼び出す
         /// </summary>
-        public List<string> RequestOutputAllTodo()
+        public List<string> RequestGetAllTodo()
         {
             return todolistManager.ReturnTodoListContent();
         }
         /// <summary>
-        /// 最初のTODOの削除処理を呼び出す
+        /// 最初のTODOを削除する処理を呼び出す
         /// </summary>
         public string RequestRemoveFirstTodo()
         {
             return todolistManager.RemoveFirstTodo();
         }
         /// <summary>
-        /// 最後のTODOの削除処理を呼び出す
+        /// 最後のTODOを削除する処理を呼び出す
         /// </summary>
         public string RequestRemoveLastTodo()
         {
             return todolistManager.RemoveLastTodo();
         }
         /// <summary>
-        /// 全てのTODOの削除処理を呼び出す
+        /// 全てのTODOを削除する処理を呼び出す
         /// </summary>
         public string RequestRemoveAllTodo()
         {
             return todolistManager.RemoveAllTodo();
         }
         /// <summary>
-        /// TODOの入れ替え処理を呼び出す
+        /// TODOを入れ替える処理を呼び出す
         /// </summary>
         public string RequestSwapTwoTodo(int replacingPosition, int targetPosition)
         {

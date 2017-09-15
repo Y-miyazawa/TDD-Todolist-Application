@@ -9,7 +9,7 @@ namespace TODOlist_ojt
     /// </summary>
     public class TodoListManager
     {
-        CsvManager CM = new CsvManager();
+        CsvManager csvManager = new CsvManager();
         public List<string> TodoList = new List<string>();
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace TODOlist_ojt
         /// </summary>
         public void LoadCsvFileToTodoList()
         {
-            TodoList = CM.WriteCsvFileLoadedIntoCreatedTemporaryList();
+            TodoList = csvManager.WriteCsvFileLoadedIntoCreatedTemporaryList();
             TodoList.RemoveAll(s => s == "");
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace TODOlist_ojt
             LoadCsvFileToTodoList();
             TodoList.RemoveAll(s => s == "");
             TodoList.Add(addTodoContent); 
-            return CM.WritingProcessToCsvFile(TodoList);
+            return csvManager.WritingProcessToCsvFile(TodoList);
         }
 
         /// <summary>
@@ -63,21 +63,9 @@ namespace TODOlist_ojt
         /// </summary>
         public List<string> ReturnTodoListContent()
         {
+            LoadCsvFileToTodoList();
             return TodoList;
         }
-
-        /// <summary>
-        /// 全てのTODOを出力する処理
-        /// </summary>
-        //public string OutputAllTodo()
-        //{
-        //    LoadCsvFileToTodoList();
-        //    if (IsTodoListContentEmpty(TodoList))
-        //        return ReturnMessageIsListEmpty();
-        //    ReturnTodoListContent();
-        //    return ReturnMessageIsOutputAllTodo();
-        //}
-
         /// <summary>
         /// 最初のTODOを削除する
         /// </summary>
@@ -89,7 +77,7 @@ namespace TODOlist_ojt
             var firstContent = 0;
             TodoList.RemoveAt(firstContent);
             TodoList.RemoveAll(s => s == "");
-            CM.WritingProcessToCsvFile(TodoList);
+            csvManager.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -103,7 +91,7 @@ namespace TODOlist_ojt
             var lastContent = TodoList.Count - 1;
             TodoList.RemoveAt(lastContent);
             TodoList.RemoveAll(s => s == "");
-            CM.WritingProcessToCsvFile(TodoList);
+            csvManager.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveTodo();
         }
         /// <summary>
@@ -115,7 +103,7 @@ namespace TODOlist_ojt
             if (IsTodoListContentEmpty(TodoList))
                 return ReturnMessageIsListEmpty();
             TodoList.Clear();
-            CM.WritingProcessToCsvFile(TodoList);
+            csvManager.WritingProcessToCsvFile(TodoList);
             return ReturnMessageIsRemoveAllTodo();
         }
         /// <summary>
@@ -138,7 +126,7 @@ namespace TODOlist_ojt
                 return ReturnMessageIsEqualValueSpecified();
 
             SwapSelectedTwoTodoOrder(replacingPosition, taegetPosition);
-                CM.WritingProcessToCsvFile(TodoList);
+                csvManager.WritingProcessToCsvFile(TodoList);
                 return ReturnMessageIsSwapTodo();
         }
         /// <summary>

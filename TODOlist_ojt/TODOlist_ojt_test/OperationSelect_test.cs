@@ -21,10 +21,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var OS = new OperationSelect();
-            var expectionString = OS.ReturnMessageIsNumberOutsideRange();
-            var checkedNumber = OS.CheckNumberAvailableRange(inputNumber);
-            var returnString = OS.InvokeInputedNumberFixProcess(checkedNumber);
+            var operationSelect = new OperationSelect();
+            var expectionString = operationSelect.ReturnMessageIsNumberOutsideRange();
+            var checkedNumber = operationSelect.CheckNumberAvailableRange(inputNumber);
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(checkedNumber);
             Assert.AreEqual(expectionString, returnString);
         }
         [TestCase(101)]
@@ -32,10 +32,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var OS = new OperationSelect();
-            var expectionString = OS.ReturnMessageIsExceptionDifferentStringFormat();
-            var checkedNumber = OS.CheckUsableNumber(inputNumber);
-            var returnString = OS.InvokeInputedNumberFixProcess(checkedNumber);
+            var operationSelect = new OperationSelect();
+            var expectionString = operationSelect.ReturnMessageIsExceptionDifferentStringFormat();
+            var checkedNumber = operationSelect.CheckUsableNumber(inputNumber);
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(checkedNumber);
             Assert.AreEqual(expectionString, returnString);
         }
         [TestCase(0)]
@@ -43,10 +43,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var OS = new OperationSelect();
-            var checkedNumber = OS.CheckNumberAvailableRange(inputNumber);
-            var returnString = OS.InvokeInputedNumberFixProcess(checkedNumber);
-            var returnBool = OS.IsCheckEndString(returnString);
+            var operationSelect = new OperationSelect();
+            var checkedNumber = operationSelect.CheckNumberAvailableRange(inputNumber);
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(checkedNumber);
+            var returnBool = operationSelect.IsCheckEndMessage(returnString);
             Assert.IsTrue(returnBool);
         }
         [TestCase("買い物に行く")]
@@ -56,10 +56,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var CM = new CsvManager();
-            var OS = new OperationSelect();
-            var expectedString = CM.ReturnMessageIsAdditionCompleted();
-            var returnString = OS.OperationNumber1SelectedInAddProcess(inpuTodo);
+            var csvManager = new CsvManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = csvManager.ReturnMessageIsAdditionCompleted();
+            var returnString = operationSelect.OperationNumber1SelectedInAddProcess(inpuTodo);
             Assert.AreEqual(expectedString, returnString);
         }
 
@@ -69,10 +69,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.AcquisitionFirstTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(2);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.AcquisitionFirstTodo();
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(2);
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -80,10 +80,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.AcquisitionLastTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(3);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.AcquisitionLastTodo();
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(3);
             Assert.AreEqual(expectedString, returnString);
 
         }
@@ -92,10 +92,11 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedList = TM.TodoList;
-            var returnList = OS.GetAllTodoList();
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            todoListManager.LoadCsvFileToTodoList();
+            var expectedList = todoListManager.TodoList;
+            var returnList = operationSelect.GetAllTodoList();
             CollectionAssert.AreEqual(expectedList, returnList);
         }
         [Test]
@@ -103,10 +104,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.RemoveFirstTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(5);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.RemoveFirstTodo();
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(5);
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -114,10 +115,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.RemoveLastTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(6);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.RemoveLastTodo();
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(6);
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -125,10 +126,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.ReturnMessageIsRemoveAllTodo();
-            var returnString = OS.InvokeInputedNumberFixProcess(7);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.ReturnMessageIsRemoveAllTodo();
+            var returnString = operationSelect.InvokeInputedNumberFixProcess(7);
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase (1,3)]
@@ -136,10 +137,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var OS = new OperationSelect();
-            var expectedString = TM.ReturnMessageIsSwapTodo();
-            var returnString = OS.PassingTodoReplacementElement(replacingPosition, taegetPosition);
+            var todoListManager = new TodoListManager();
+            var operationSelect = new OperationSelect();
+            var expectedString = todoListManager.ReturnMessageIsSwapTodo();
+            var returnString = operationSelect.CheckReturnExceptionMessage(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
 

@@ -28,10 +28,9 @@ namespace TODOlist_ojt
         /// <summary>
         /// 受け取ったメッセージが終了時のメッセージの場合はTrueを返す
         /// </summary>
-        public bool IsCheckEndString(string receivedString)
+        public bool IsCheckEndMessage(string receivedString)
         {
-            var expectedString = ReturnMessageIsProgramEnd();
-            return receivedString == expectedString ? true : false;
+            return receivedString == ReturnMessageIsProgramEnd() ? true : false;
         }
         /// <summary>
         /// 入力された数値を識別してそれに対応する処理を呼び出す
@@ -42,8 +41,6 @@ namespace TODOlist_ojt
                 return ReturnMessageIsProgramEnd();
             if (operationNumber == 9)
                 return ReturnMessageIsNumberOutsideRange();
-            if (operationNumber == 10)
-                return ReturnNull();
             if (operationNumber == 101)
                 return ReturnMessageIsExceptionDifferentStringFormat();
 
@@ -64,20 +61,13 @@ namespace TODOlist_ojt
         /// <returns></returns>
         public List<string> GetAllTodoList()
         {
-            return operationManager.RequestOutputAllTodo();
+            return operationManager.RequestGetAllTodo();
         }
 
         /// <summary>
-        /// 操作番号8が選択された時の処理（入れ替え番号選択時のTODOリストの表示）
+        ///例外メッセージの返却チェック
         /// </summary>
-        public void OperationNumber8SelectedInOutputProcess()
-        {
-            operationManager.ReceivedNumber8WhenOutputProcess();
-        }
-        /// <summary>
-        /// TODOリストの入れ替え
-        /// </summary>
-        public string PassingTodoReplacementElement(int SwapTodoNumber1, int SwapTodoNumber2)
+        public string CheckReturnExceptionMessage(int SwapTodoNumber1, int SwapTodoNumber2)
         {
             if (SwapTodoNumber1 == 101)
                 return ReturnMessageIsExceptionDifferentStringFormat();
@@ -86,11 +76,13 @@ namespace TODOlist_ojt
             return operationManager.ReceivedNumber8WhenSwapProcess(SwapTodoNumber1, SwapTodoNumber2);
         }
 
+        /// <summary>
+        /// 操作番号の入力時に返すメッセージ
+        /// </summary>
         public string ReturnMessageIsInputNumber()
         {
             return "操作番号を入力：";
         }
-
         /// <summary>
         /// 追加するTODOの入力時に返すメッセージ
         /// </summary>

@@ -19,9 +19,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            TM.AddTodoContentToTodoListProcess(inputTodoContents);
-            var todoListForTest = new List<string>(TM.TodoList);
+            var todoListManager = new TodoListManager();
+            todoListManager.AddTodoContentToTodoListProcess(inputTodoContents);
+            var todoListForTest = new List<string>(todoListManager.TodoList);
             var expectedTodoString = todoListForTest[todoListForTest.Count - 1];
             Assert.AreEqual(expectedTodoString, inputTodoContents);
         }
@@ -30,10 +30,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            TM.LoadCsvFileToTodoList();
-            var expectedTodoString = TM.TodoList[0];
-            var firstTodo = TM.AcquisitionFirstTodo();
+            var todoListManager = new TodoListManager();
+            todoListManager.LoadCsvFileToTodoList();
+            var expectedTodoString = todoListManager.TodoList[0];
+            var firstTodo = todoListManager.AcquisitionFirstTodo();
             Assert.AreEqual(expectedTodoString, firstTodo);
         }
         [Test]
@@ -41,11 +41,11 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            TM.LoadCsvFileToTodoList();
-            var todoListForTest = new List<string>(TM.TodoList);
+            var todoListManager = new TodoListManager();
+            todoListManager.LoadCsvFileToTodoList();
+            var todoListForTest = new List<string>(todoListManager.TodoList);
             var expectedTodoString = todoListForTest[todoListForTest.Count - 1];
-            var lastTodoString = TM.AcquisitionLastTodo();
+            var lastTodoString = todoListManager.AcquisitionLastTodo();
             Assert.AreEqual(expectedTodoString, lastTodoString);
         }
         [Test]
@@ -53,9 +53,10 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedList = new List<string>(TM.TodoList);
-            var returnList = TM.ReturnTodoListContent();
+            var todoListManager = new TodoListManager();
+            todoListManager.LoadCsvFileToTodoList();
+            var expectedList = todoListManager.TodoList;
+            var returnList = todoListManager.ReturnTodoListContent();
             CollectionAssert.AreEqual(expectedList, returnList);
         }
         [Test]
@@ -63,9 +64,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsRemoveTodo();
-            var returnString = TM.RemoveFirstTodo();
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsRemoveTodo();
+            var returnString = todoListManager.RemoveFirstTodo();
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -73,9 +74,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsRemoveTodo();
-            var returnString = TM.RemoveLastTodo();
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsRemoveTodo();
+            var returnString = todoListManager.RemoveLastTodo();
             Assert.AreEqual(expectedString, returnString);
         }
         [Test]
@@ -83,9 +84,9 @@ namespace TODOlist_ojt_test
         {
             //CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsRemoveAllTodo();
-            var returnString = TM.RemoveAllTodo();
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsRemoveAllTodo();
+            var returnString = todoListManager.RemoveAllTodo();
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase(2, 5)]
@@ -95,10 +96,10 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var beforeTodoList = new List<string>(TM.TodoList);
-            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
-            CollectionAssert.AreNotEqual(TM.TodoList, beforeTodoList);
+            var todoListManager = new TodoListManager();
+            var beforeTodoList = new List<string>(todoListManager.TodoList);
+            var returnString = todoListManager.SwapTodo(replacingPosition, taegetPosition);
+            CollectionAssert.AreNotEqual(todoListManager.TodoList, beforeTodoList);
         }
         [TestCase(1, 8)]
         [TestCase(5, 9)]
@@ -107,9 +108,9 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsNumberRangeOutsideTodo();
-            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsNumberRangeOutsideTodo();
+            var returnString = todoListManager.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase(1, 2)]
@@ -119,9 +120,9 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_1();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsTodoListElementsCountIsOne();
-            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsTodoListElementsCountIsOne();
+            var returnString = todoListManager.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
         [TestCase(1, 2)]
@@ -131,10 +132,10 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            TM.RemoveAllTodo();
-            var expectedString = TM.ReturnMessageIsListEmpty();
-            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
+            var todoListManager = new TodoListManager();
+            todoListManager.RemoveAllTodo();
+            var expectedString = todoListManager.ReturnMessageIsListEmpty();
+            var returnString = todoListManager.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
 
@@ -145,9 +146,9 @@ namespace TODOlist_ojt_test
         {
             // CSVの初期化
             startProcess.TestStartingBeforeOperation_ElemetsCountIs_7();
-            var TM = new TodoListManager();
-            var expectedString = TM.ReturnMessageIsEqualValueSpecified();
-            var returnString = TM.SwapTodo(replacingPosition, taegetPosition);
+            var todoListManager = new TodoListManager();
+            var expectedString = todoListManager.ReturnMessageIsEqualValueSpecified();
+            var returnString = todoListManager.SwapTodo(replacingPosition, taegetPosition);
             Assert.AreEqual(expectedString, returnString);
         }
 
